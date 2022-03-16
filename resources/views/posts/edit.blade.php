@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('styles')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> 
 @endsection
@@ -9,14 +8,16 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Create New Post</div>
+                <div class="card-header">Edit Post</div>
 
                 <div class="card-body">
-                    <form action="/posts" method="POST">
+                    <form action="/posts/{{$post->id}}/edit" method="POST">
                         @csrf
+                        @method('put')
+
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" placeholder="Post Title">
+                            <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ $post->title }}" placeholder="Post Title">
                             @error('title')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -24,22 +25,18 @@
                             @enderror
                         </div>
                         <div class="form-group">
-
                             <label for="category">Post Category</label>
-
-                            <select id="category" type="text" class="form-control @error('category_id') is-invalid @enderror" name="category_id" placeholder="Post category">
+                            <select id="category" type="text" class="form-control @error('category_id') is-invalid @enderror" name="category_id" value="{{ $post->title }}" placeholder="Post category">
                                 <option>Select a Category</option>
                                 @foreach ($categories as $category)
-                                  <option value="{{ $category->id }}"> {{ $category->name }} </option>
+                                  <option value="{{ $category->id }}" {{ $post->category_id == $category->id ? 'selected' : '' }}> {{ $category->name }} </option>
                                 @endforeach
                             </select>
-
                             @error('category_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                             @enderror
-
                         </div>
 
                         <div class="form-group">
@@ -66,14 +63,14 @@
                         <div class="form-group">
                            <label for="body">Body</label>
                            <textarea id="body" type="text" class="form-control @error('body') is-invalid @enderror" name="body" placeholder="Body" rows="7">
-                           </textarea>
+                            {{ $post->title }}</textarea>
                            @error('body')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                             @enderror
                        </div>
-                       <button type="submit" class="btn btn-primary">Create</button>
+                       <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </div>
             </div>
