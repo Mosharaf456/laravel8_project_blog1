@@ -11,7 +11,7 @@
                 <div class="card-header">Edit Post</div>
 
                 <div class="card-body">
-                    <form action="/posts/{{$post->id}}/edit" method="POST">
+                    <form action="/posts/{{$post->id}}/edit" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('put')
 
@@ -61,9 +61,22 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="thumbnail">Thumbnail</label>
+                            <input id="thumbnail" type="file" name="thumbnail"  class="form-control @error('thumbnail') is-invalid @enderror" 
+                             placeholder="thumbnail" >
+
+                            @error('thumbnail')
+                                     <span class="invalid-feedback" role="alert">
+                                         <strong>{{ $message }}</strong>
+                                     </span>
+                             @enderror
+                             <img src='{{ asset("uploads/posts/$post->thumbnail") }}' alt="Thumbnail" width="100">
+                        </div>
+
+                        <div class="form-group">
                            <label for="body">Body</label>
                            <textarea id="body" type="text" class="form-control @error('body') is-invalid @enderror" name="body" placeholder="Body" rows="7">
-                            {{ $post->title }}</textarea>
+                            {{ $post->body }}</textarea>
                            @error('body')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
