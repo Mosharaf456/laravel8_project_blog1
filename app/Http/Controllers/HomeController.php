@@ -32,4 +32,10 @@ class HomeController extends Controller
             'categories' => $categories
         ]);
     }
+    public function show(Post $post)
+    {
+        return view('home.show' , [
+            'post' => $post
+        ]);
+    }
 }

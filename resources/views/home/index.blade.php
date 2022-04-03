@@ -3,17 +3,23 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Posts Lists</div>
+        <div class="col-md-9">
 
-                <div class="card-body">
-                    @foreach ($posts as $post)
-                        <h3>{{ $post->title }}</h3>
-                    @endforeach
-                    
+            @foreach ($posts as $post)
+                <div class="card mb-4">
+                    <div class="card-header">
+                        @if ($post->thumbnail)
+                             <img src="{{$post->thumbnail_path()}}" class="rounded-circle" 
+                             style=" float:left; margin-right:15px; " alt="Thumbnail" width="60">
+                        @endif
+                        <a href="posts/{{$post->id}}" style="text-decoration:none; "> <h3>{{ $post->title }}</h3> </a> 
+                    </div>
+                    <div class="card-body">
+                         <p>{{ $post->body }}</p>
+                    </div>
                 </div>
-            </div>
+            @endforeach
+
         </div>
 
         <div class="col-md-3">

@@ -38,7 +38,14 @@ Route::put('/tags/{tag}/edit', 'TagsController@update');
 Route::get('/posts' , 'PostsController@index');
 
 Route::post('/posts' , 'PostsController@store');
+// 
+Route::get('/posts/{post}' , 'HomeController@show');
 
+//comments
+Route::post('/posts/{post}/comments' , 'CommentsController@store');
+//
+Route::get('/posts/{post}/liked' , 'CommentsController@storeLike');
+// Posts2
 Route::get('/posts/create' , 'PostsController@create');
 
 Route::get('/posts/{post}/edit' , 'PostsController@edit');

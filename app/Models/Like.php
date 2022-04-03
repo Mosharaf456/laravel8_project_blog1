@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class Like extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 
-    //* *
-    public function posts()
+    public function likeable()
     {
-        return $this->belongsToMany('App\Models\Post');
+        return $this->morphTo();
     }
 }
