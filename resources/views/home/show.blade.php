@@ -21,10 +21,10 @@
                     </div>
 
                     <div class="card-footer">
-                        {{$post->likes->count()}} People Liked this post
-                        <a href="/posts/{{$post->id}}/liked" class="btn btn-sm {{($post->likeByCurrentUser()) ?"btn-danger" : "btn-success" }}"> 
-                            {{($post->likeByCurrentUser()) ?"Dislike" : "Like" }}
-                         </a>
+                            {{$post->likes->count()}} People Liked this post
+                            <a href="/posts/{{$post->id}}/liked" class="btn btn-sm {{($post->likeByCurrentUser()) ?"btn-danger" : "btn-success" }}"> 
+                                {{ ($post->likeByCurrentUser()) ? "Dislike" : "Like" }}
+                            </a>
                     </div>
 
                 </div>

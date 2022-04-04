@@ -42,9 +42,9 @@ Route::post('/posts' , 'PostsController@store');
 Route::get('/posts/{post}' , 'HomeController@show');
 
 //comments
-Route::post('/posts/{post}/comments' , 'CommentsController@store');
+Route::post('/posts/{post}/comments' , 'CommentsController@store')->middleware('auth');
 //
-Route::get('/posts/{post}/liked' , 'CommentsController@storeLike');
+Route::get('/posts/{post}/liked' , 'CommentsController@storeLike')->middleware('auth');
 // Posts2
 Route::get('/posts/create' , 'PostsController@create');
 
