@@ -38,4 +38,13 @@ class Post extends Model
     {
         return $this->likes()->where('user_id' , auth()->id())->exists();
     }
+
+    // public function categories()
+    // {
+    //     return $this->hasMany('App\Models\Category');
+    // }
+    // public function categories()
+    // {
+    //   return $this->belongsTo(Category::class );
+    // }
 }

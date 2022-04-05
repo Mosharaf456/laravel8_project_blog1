@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -51,5 +52,20 @@ class CommentsController extends Controller
         ]);
 
         return back()->with('success', 'You Liked This Post.');
+    }
+
+    public function storeCommentLike(Comment $comment)
+    {
+        $like = $comment->likes()->where('user_id',auth()->id())->first();
+        if($like)
+        {
+            $like->delete();
+            return back()->with('success', 'You  Disliked This Comment.');
+        }
+        $comment->likes()->create([
+            'user_id' => auth()->id()
+        ]);
+
+        return back()->with('success', 'You Liked This Comment.');
     }
 }

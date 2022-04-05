@@ -26,11 +26,14 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::paginate(20);
+        
         $categories = Category::all(); 
+
         return view('home.index' ,[
             'posts' => $posts,
             'categories' => $categories
         ]);
+
     }
     public function show(Post $post)
     {

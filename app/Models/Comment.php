@@ -50,5 +50,16 @@ class Comment extends Model
         return $this->belongsTo(Post::class );
     }
 
+    public function likes()
+    {
+        return $this->morphMany('App\Models\Like', 'likeable');
+    }
+
+     // like checks 
+     public function likeByCurrentUser()
+     {
+         return $this->likes()->where('user_id' , auth()->id())->exists();
+     }
+
 }
 

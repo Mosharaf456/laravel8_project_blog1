@@ -58,7 +58,14 @@
 
             @foreach ($post->comments as $comment)
                 <div class="card mb-2">
-                    <div class="card-header"> {{ $comment->owner->name }} said</div>
+                    <div class="card-header"> {{ $comment->owner->name }} said 
+
+                        <a href="/comments/{{$comment->id}}/liked" class="btn btn-success pull-right {{($comment->likeByCurrentUser()) ?"btn-danger" : "btn-success" }}"> 
+                            {{-- <i class="fa fa-heart"></i>  --}}
+                            {{$comment->likes()->count()}}
+                            <i class="fa fa-thumbs-up"></i> 
+                        </a>
+                    </div>
                     <div class="card-body">
                         {{ $comment->body }}
                     </div>

@@ -43,8 +43,13 @@ Route::get('/posts/{post}' , 'HomeController@show');
 
 //comments
 Route::post('/posts/{post}/comments' , 'CommentsController@store')->middleware('auth');
+
+Route::get('/posts/{category}/category' , 'SearchController@searchPostBycategory');
 //
 Route::get('/posts/{post}/liked' , 'CommentsController@storeLike')->middleware('auth');
+
+Route::get('/comments/{comment}/liked' , 'CommentsController@storeCommentLike')->middleware('auth');
+
 // Posts2
 Route::get('/posts/create' , 'PostsController@create');
 

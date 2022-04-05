@@ -24,13 +24,20 @@
 
         <div class="col-md-3">
             <div class="card">
-                <div class="card-header">Categories Lists</div>
+                <div class="card-header">
+                    Categories Lists
+                </div>
 
                 <div class="card-body">
-                    @foreach ($categories as $category)
-                         <h3>{{ $category->name }}</h3>
-                    @endforeach
+                    <ul class="list-group">
+                        @foreach ($categories as $category)
+                            <li class="list-group-item"> 
+                                <a href="/posts/{{$category->id}}/category">{{ $category->name }} </a>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
+
             </div>
         </div>
 
